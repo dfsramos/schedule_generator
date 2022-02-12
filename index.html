@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container-fluid p-4" id="main">
+        <div class="row">
+            <div class="">
+                <table id="template_schedule" class="table invisible table-striped table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>Semana</th>
+                            <th>Início</th>
+                            <th>Fim</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="input-group">
+                        <span class="input-group-text">Names (1/line)</span>
+                        <textarea id="people" class="form-control" aria-label="With textarea" rows="10">Daniel R.
+Daniel M.
+Rute
+Fábio
+Aguenelo
+Lucas
+Vitor</textarea>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="input-group">
+                        <span class="input-group-text">Positions*x (1/line)</span>
+                        <textarea id="positions" class="form-control" aria-label="With textarea" rows="10">Stream/Som*2
+Câmara/Apoio*2</textarea>
+                    </div>
+                </div>
+                <div class="row mt-3 px-3">
+                    <button id="generate" type="button" class="btn btn-primary btn-lg">Generate schedule!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
