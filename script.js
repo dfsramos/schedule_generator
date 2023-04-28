@@ -193,8 +193,10 @@ $(function ()
 
         for (var week in weeklyDates)
         {
+            schedule[week] = [];
             for (var position in positionsList)
             {
+                schedule[week][position] = [];
                 var amount = positionsList[position].amount;
                 for (var slot = 0; slot < amount; slot++)
                 {
