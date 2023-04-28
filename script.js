@@ -1,4 +1,5 @@
-var peopleList = positionsList = weeklyDates = [];
+var peopleList = positionsList = weeklyDates = schedule = [];
+var scheduleHash = '';
 var $people, $positions, $generate, $schedule;
 var highlightCombinations = [
     'bg-primary text-white',
@@ -212,7 +213,8 @@ $(function ()
                             shuffle(raffleBucket);
                             continue;
                         }
-
+                        
+                        schedule[week][position][slot] = personName;
                         $('#' + week + '_' + position + '_' + slot + '').text(personName).removeClass().addClass(workbench[personName].highlight);
                         workbench[personName].currentUsage++;
                         workbench[personName].consecutiveUses++;
@@ -231,6 +233,7 @@ $(function ()
                 }
             }
         }
+        scheduleHash = btoa(JSON.stringify(schedule));
     };
 
     $document.on('click', '#generate', function ()
