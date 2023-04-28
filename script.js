@@ -193,10 +193,10 @@ $(function ()
 
         for (var week in weeklyDates)
         {
-            schedule[week] = [];
+            schedule[weeklyDates[week]] = [];
             for (var position in positionsList)
             {
-                schedule[week][position] = [];
+                schedule[weeklyDates[week]][positionsList[position]] = [];
                 var amount = positionsList[position].amount;
                 for (var slot = 0; slot < amount; slot++)
                 {
@@ -216,7 +216,7 @@ $(function ()
                             continue;
                         }
                         
-                        schedule[week][position][slot] = personName;
+                        schedule[weeklyDates[week]][positionsList[position]][slot] = personName;
                         $('#' + week + '_' + position + '_' + slot + '').text(personName).removeClass().addClass(workbench[personName].highlight);
                         workbench[personName].currentUsage++;
                         workbench[personName].consecutiveUses++;
