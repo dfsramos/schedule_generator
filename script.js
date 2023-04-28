@@ -193,10 +193,18 @@ $(function ()
 
         for (var week in weeklyDates)
         {
-            schedule[weeklyDates[week]] = [];
+			schedule[week] = {
+				firstDay : (("0" + weeklyDates[week].firstDay.getUTCDate()).slice(-2) + '/' + ("0" + (weeklyDates[week].firstDay.getUTCMonth() + 1)).slice(-2)),
+				lastDay : (("0" + weeklyDates[week].lastDay.getUTCDate()).slice(-2) + '/' + ("0" + (weeklyDates[week].lastDay.getUTCMonth() + 1)).slice(-2)),
+				weekNumber : weeklyDates[week].weekNumber,
+				positions : []
+			};
             for (var position in positionsList)
             {
-                schedule[weeklyDates[week]][positionsList[position]] = [];
+				schedule[week].positions[position] = {
+					position : positionsList[position].name,
+					people : []
+				};
                 var amount = positionsList[position].amount;
                 for (var slot = 0; slot < amount; slot++)
                 {
@@ -215,8 +223,7 @@ $(function ()
                             shuffle(raffleBucket);
                             continue;
                         }
-                        
-                        schedule[weeklyDates[week]][positionsList[position]][slot] = personName;
+                        schedule[week].positions[position].people.push(personName)
                         $('#' + week + '_' + position + '_' + slot + '').text(personName).removeClass().addClass(workbench[personName].highlight);
                         workbench[personName].currentUsage++;
                         workbench[personName].consecutiveUses++;
@@ -236,6 +243,7 @@ $(function ()
             }
         }
         scheduleHash = btoa(JSON.stringify(schedule));
+		pp(scheduleHash);
     };
 
     $document.on('click', '#generate', function ()
