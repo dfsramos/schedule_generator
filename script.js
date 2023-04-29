@@ -243,13 +243,54 @@ $(function ()
             }
         }
         scheduleHash = btoa(JSON.stringify(schedule));
-		pp(scheduleHash);
     };
+	
+	SaveToPastebin = function(scheduleName, scheduleHash)
+	{
+		var apiUrl = 'https://pastebin.com/api/api_post.php';
+		var apiKey = 'fRJZHKCf2-wm1_6fVgInhrBMGaH8aaYr';
+		var pastePrivacy = 1;
+		var pasteCode = scheduleHash;
+		var pasteName = scheduleName;
+		var pasteExpiry = '1Y';
+		$.ajax({
+			url: apiUrl,
+			data: {
+				api_dev_key : apiKey,
+				api_paste_private : pastePrivacy,
+				api_paste_code: pasteCode,
+				api_option : 'paste',
+				api_paste_name : pasteName,
+				api_paste_expire_date : pasteExpiry
+			},
+			success: function(resp){
+				console.log(resp);
+			},
+			error: function(a,b,c){
+				console.log(a);
+				console.log(b);
+				console.log(c);
+			}
+		});
+	};
 
     $document.on('click', '#generate', function ()
     {
         GenerateRows();
         PopulateRows();
+		$('#save').removeClass('d-none');
+    });
+	
+    $document.on('click', '#save', function ()
+    {
+		var scheduleName = prompt('Qual o nome da escala?');
+		if(scheduleName == '')
+		{
+			alert('Deve fornecer um nome para a escala.');
+			return;
+		}
+		
+		var scheduleUrl = SaveToPastebin(scheduleName, scheduleHash);
     });
 
     Startup();
